@@ -734,7 +734,7 @@ void CNXDNGateway::writeJSONStatus(const std::string& status)
 	json["timestamp"] = CUtils::createTimestamp();
 	json["message"]   = status;
 
-	WriteJSON("status", json);
+	WriteJSON("status", json, false);
 }
 
 void CNXDNGateway::writeJSONLinking(const std::string& reason, unsigned short tg)
@@ -746,7 +746,7 @@ void CNXDNGateway::writeJSONLinking(const std::string& reason, unsigned short tg
 	json["reason"]    = reason;
 	json["talkgroup"] = int(tg);
 
-	WriteJSON("link", json);
+	WriteJSON("link", json, true);
 }
 
 void CNXDNGateway::writeJSONUnlinked(const std::string& reason)
@@ -757,7 +757,7 @@ void CNXDNGateway::writeJSONUnlinked(const std::string& reason)
 	json["action"]    = "unlinked";
 	json["reason"]    = reason;
 
-	WriteJSON("link", json);
+	WriteJSON("link", json, true);
 }
 
 void CNXDNGateway::writeJSONRelinking(unsigned short tg)
@@ -768,7 +768,7 @@ void CNXDNGateway::writeJSONRelinking(unsigned short tg)
 	json["action"]    = "relinking";
 	json["talkgroup"] = int(tg);
 
-	WriteJSON("link", json);
+	WriteJSON("link", json, true);
 }
 
 void CNXDNGateway::onCommand(const unsigned char* command, unsigned int length)
